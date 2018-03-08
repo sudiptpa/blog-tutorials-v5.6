@@ -24,3 +24,13 @@ Route::get('/trending', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('blog/rss', [
+    'as' => 'app.blog.rss',
+    'uses' => 'BlogController@rss',
+]);
+
+Route::get('blog/{slug}', [
+    'as' => 'app.blog.view',
+    'uses' => 'BlogController@view',
+]);
