@@ -48,6 +48,8 @@ class TrendingCommand extends Command
         $pages = Analytics::fetchMostVisitedPages(Period::days(1), 300);
 
         if ($pages->count()) {
+            $this->purge();
+
             $pages->map(function ($each) {
                 $each = (object) $each;
 
@@ -69,5 +71,16 @@ class TrendingCommand extends Command
                 }
             });
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function purge()
+    {
+        $period = Period::days(8);
+
+        return Trending::where('created_at', '<', $period->startDate)
+            ->forceDelete();
     }
 }
