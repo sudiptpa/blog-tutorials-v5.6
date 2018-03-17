@@ -1,3 +1,9 @@
+@inject('trending', 'App\Helpers\Trending')
+
+@php
+    $trendings = $trending::weekly();
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
