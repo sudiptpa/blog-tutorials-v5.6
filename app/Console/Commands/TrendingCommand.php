@@ -57,7 +57,7 @@ class TrendingCommand extends Command
                     $slug = str_replace("/blog/", '', $each->url);
                     $blog = Blog::findByTitle($slug);
 
-                    if (sizeof($blog)) {
+                    if (!empty($blog)) {
                         Trending::create([
                             'blog_id' => $blog->id,
                             'views' => $each->pageViews,
@@ -79,6 +79,8 @@ class TrendingCommand extends Command
     public function purge()
     {
         $period = Period::days(8);
+
+        $this->info("Purging records before : {$period->startDate} \n");
 
         return Trending::where('created_at', '<', $period->startDate)
             ->forceDelete();
