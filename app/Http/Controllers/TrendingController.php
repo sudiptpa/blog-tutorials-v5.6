@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Trending;
-use Spatie\Analytics\AnalyticsFacade as Analytics;
-use Spatie\Analytics\Period;
+use App\Helpers\Trending;
 
 /**
  * Class TrendingController
@@ -17,10 +15,7 @@ class TrendingController extends Controller
      */
     public function show()
     {
-        $trendings = Analytics::fetchMostVisitedPages(
-            Period::days(7),
-            15
-        );
+        $trendings = Trending::weekly();
 
         return view('trending', compact('trendings'));
     }
