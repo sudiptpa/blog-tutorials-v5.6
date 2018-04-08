@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,3 +23,9 @@ Route::get('/trending', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/instagram/feed', [
+    'name' => 'Instagram Feed',
+    'as' => 'app.instagram.feed',
+    'uses' => 'InstagramController@feed',
+]);
