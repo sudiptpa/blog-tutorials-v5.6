@@ -95,7 +95,7 @@
 
                 setup: function($el, key) {
                     $el.typeahead({ minLength: 3 }, {
-                        limit: 10,
+                        limit: 20,
                         source: App.Auspost.engine($el, key).ttAdapter(),
                         templates: {
                             notFound: function () {
