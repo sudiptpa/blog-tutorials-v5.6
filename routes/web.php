@@ -29,3 +29,15 @@ Route::get('/instagram/feed', [
     'as' => 'app.instagram.feed',
     'uses' => 'InstagramController@feed',
 ]);
+
+Route::get('/postcode/search', [
+    'name' => 'Australia Post Postcode Search',
+    'as' => 'app.postcode.search',
+    'uses' => 'AustraliaPostController@index',
+]);
+
+Route::get('/postcode/api/search', [
+    'name' => 'Australia Post Postcode Search',
+    'as' => 'app.postcode.api.search',
+    'uses' => 'AustraliaPostController@search',
+]);
