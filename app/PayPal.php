@@ -79,7 +79,7 @@ class PayPal
      */
     public function getNotifyUrl($order)
     {
-        $env = config('paypal.credentials.sandbox') ? "sandbox" : "live";
+        $env = config('services.paypal.sandbox') ? "sandbox" : "live";
 
         return route('webhook.paypal.ipn', [$order->id, $env]);
     }
