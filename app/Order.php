@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    const PAYMENT_COMPLETED = 1;
+    const PAYMENT_PENDING = 0;
     /**
      * @var string
      */
