@@ -9,6 +9,8 @@
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
+        "league/omnipay": "^3.0",
+        "omnipay/paypal": "^3.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "spatie/laravel-analytics": "^3.4",
