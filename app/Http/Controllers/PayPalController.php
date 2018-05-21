@@ -98,4 +98,14 @@ class PayPalController extends Controller
             'message' => 'You have cancelled your recent PayPal payment !',
         ]);
     }
+
+        /**
+     * @param $order_id
+     * @param $env
+     * @param Request $request
+     */
+    public function webhook($order_id, $env, Request $request)
+    {
+        // to do with new release of sudiptpa/paypal-ipn v3.0 (under development)
+    }
 }
