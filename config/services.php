@@ -36,9 +36,9 @@ return [
     ],
 
     'paypal' => [
-        'username' => 'xxxxxxxxxxxx',
-        'password' => 'xxxxxxxxxxxx',
-        'signature' => 'xxxxxxxxxxxx',
-        'sandbox' => true,
+        'username' => env('PAYPAL_USERNAME'),
+        'password' => env('PAYPAL_PASSWORD'),
+        'signature' => env('PAYPAL_SIGNATURE'),
+        'sandbox' => env('PAYPAL_SANDBOX'),
     ],
 ];
