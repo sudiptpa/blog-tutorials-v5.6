@@ -83,6 +83,7 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ route('checkout.payment') }}">SecurePay Integration</a>
                     <a href="{{ route('order.paypal') }}">PayPal Integration</a>
                     <a href="{{ route('app.trending') }}">Trending</a>
                     <a href="https://laravel.com/docs">Documentation</a>

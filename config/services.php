@@ -41,4 +41,9 @@ return [
         'signature' => env('PAYPAL_SIGNATURE'),
         'sandbox' => env('PAYPAL_SANDBOX'),
     ],
+    'securepay' => [
+        'merchant_id' => env('SECUREPAY_MERCHANTID'),
+        'password' => env('SECUREPAY_PASSWORD'),
+        'sandbox' => env('SECUREPAY_SANDBOX', true)
+    ],
 ];

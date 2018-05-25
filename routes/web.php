@@ -59,3 +59,32 @@ Route::post('/webhook/paypal/{order?}/{env?}', [
     'as' => 'webhook.paypal.ipn',
     'uses' => 'PayPalController@webhook',
 ]);
+
+/**
+ *      SecurePay Routes
+ * ----------------------------------------------------------
+ */
+
+Route::get('/checkout/payment', [
+    'name' => 'Payment',
+    'as' => 'checkout.payment',
+    'uses' => 'PaymentController@checkout',
+]);
+
+Route::post('/checkout/payment/{order}/process', [
+    'name' => 'Payment',
+    'as' => 'checkout.payment.process',
+    'uses' => 'PaymentController@payment',
+]);
+
+Route::get('/checkout/payment/{order}/completed', [
+    'name' => 'Payment Completed',
+    'as' => 'checkout.payment.completed',
+    'uses' => 'PaymentController@completed',
+]);
+
+Route::get('/checkout/payment/{order}/failed', [
+    'name' => 'Payment Failed',
+    'as' => 'checkout.payment.failed',
+    'uses' => 'PaymentController@failed',
+]);

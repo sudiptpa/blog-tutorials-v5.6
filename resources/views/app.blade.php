@@ -103,6 +103,8 @@
                 width: 200px;
             }
         </style>
+
+        @yield('style')
     </head>
     <body>
         <div class="flex-center">
