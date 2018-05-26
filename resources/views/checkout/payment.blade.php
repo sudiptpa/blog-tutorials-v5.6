@@ -208,7 +208,7 @@
               <div class="form-group col-sm-12">
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fa fa-credit-card" aria-hidden="true"></i>
-                    Pay with Crdit Card
+                    Pay with Credit Card
                 </button>
               </div>
             </div>
