@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Blog extends Model
 {
+    const STATUS_ENABLED = 1;
+    const STATUS_DISABLED = 0;
+
     /**
      * @var string
      */
@@ -23,7 +26,7 @@ class Blog extends Model
     /**
      * @var string
      */
-    protected $fillable = ['user_id', 'name', 'slug', 'excerpt', 'content', 'status', 'published_at'];
+    protected $fillable = ['user_id', 'name', 'slug', 'guid', 'excerpt', 'content', 'status', 'published_at'];
 
     /**
      * @param $slug
@@ -31,5 +34,23 @@ class Blog extends Model
     public static function findByTitle($slug = null)
     {
         return self::where('slug', $slug)->first();
+    }
+
+    /**
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', now());
+    }
+
+    /**
+     * @param Builder $query
+     * @return mixed
+     */
+    public function scopeEnabled($query)
+    {
+        return $query->where('status', self::STATUS_ENABLED);
     }
 }

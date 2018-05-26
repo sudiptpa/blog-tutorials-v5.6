@@ -12,7 +12,7 @@ return [
     | default location for this type of information, allowing packages
     | to have a conventional place to find your various credentials.
     |
-    */
+     */
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
@@ -34,5 +34,15 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'paypal' => [
+        'username' => env('PAYPAL_USERNAME'),
+        'password' => env('PAYPAL_PASSWORD'),
+        'signature' => env('PAYPAL_SIGNATURE'),
+        'sandbox' => env('PAYPAL_SANDBOX'),
+    ],
+    'securepay' => [
+        'merchant_id' => env('SECUREPAY_MERCHANTID'),
+        'password' => env('SECUREPAY_PASSWORD'),
+        'sandbox' => env('SECUREPAY_SANDBOX', true)
+    ],
 ];
