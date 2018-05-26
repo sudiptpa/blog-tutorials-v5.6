@@ -1,3 +1,9 @@
+@inject('trending', 'App\Helpers\Trending')
+
+@php
+    $trendings = $trending::weekly();
+@endphp
+
 @extends('layouts.app')
 
 @section('content')
@@ -10,15 +16,14 @@
                         @if($trendings->count())
                             <ul>
                                 @foreach($trendings as $key => $each)
-                                    @if(starts_with($each['url'], '/blog/') && $each['pageTitle'] != '(not set)')
-                                        <li>
-                                            <div class="article">
-                                                <a href="{{ $each['url'] }}" title="{{ $each['pageTitle'] }}">
-                                                    {{ $each['pageTitle'] }}
-                                                </a>
-                                            </div>
-                                        </li>
-                                    @endif
+                                   <li>
+                                        <div class="article">
+                                            <a href="{{ asset($each->url) }}" title="{{ $each->views }}">
+                                                <span class="text-muted">{{ $each->blog->published_at->format('d M, Y') }}</span><br>
+                                                {{ $each->blog->name }}
+                                            </a>
+                                        </div>
+                                    </li>
                                 @endforeach
                             </ul>
                         @endif

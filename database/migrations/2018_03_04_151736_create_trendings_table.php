@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateTrendingsTable extends Migration
 {
@@ -15,7 +15,13 @@ class CreateTrendingsTable extends Migration
     {
         Schema::create('trendings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('blog_id')->nullable();
+            $table->integer('views')->nullable();
+            $table->string('url', 1024)->nullable();
+            $table->string('page_title', 1024)->nullable();
+            $table->tinyInteger('status')->default(1)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

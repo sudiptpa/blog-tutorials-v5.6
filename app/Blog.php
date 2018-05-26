@@ -29,6 +29,14 @@ class Blog extends Model
     protected $fillable = ['user_id', 'name', 'slug', 'guid', 'excerpt', 'content', 'status', 'published_at'];
 
     /**
+     * @param $slug
+     */
+    public static function findByTitle($slug = null)
+    {
+        return self::where('slug', $slug)->first();
+    }
+
+    /**
      * @param Builder $query
      * @return mixed
      */

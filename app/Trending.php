@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Models\Blog;
+use App\Blog;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Analytics\Period;
 
@@ -44,15 +44,6 @@ class Trending extends Model
      * @param $query
      * @return mixed
      */
-    public function scopeTop($query)
-    {
-        return $query->orderBy('views', 'DESC');
-    }
-
-    /**
-     * @param $query
-     * @return mixed
-     */
     public function scopeMonthly($query)
     {
         $period = Period::months(1);
@@ -75,26 +66,5 @@ class Trending extends Model
             $period->startDate,
             $period->endDate->endOfDay(),
         ]);
-    }
-
-    /**
-     * @param $take
-     * @return mixed
-     */
-    public static function popular($take = 20)
-    {
-        $collection = collect();
-        $trendings = static::weekly()->get();
-
-        $trendings->groupBy('blog_id')->map(function ($each) use ($collection) {
-            $object = collect($each);
-
-            $item = $object->first();
-            $item->views = $object->sum('views');
-
-            $collection->push($item);
-        });
-
-        return $collection;
     }
 }
