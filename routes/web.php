@@ -30,6 +30,28 @@ Route::get('/instagram/feed', [
     'uses' => 'InstagramController@feed',
 ]);
 
+/**
+ *      Auspost Routes
+ * ----------------------------------------------------------
+ */
+
+Route::get('/postcode/search', [
+    'name' => 'Australia Post Postcode Search',
+    'as' => 'app.postcode.search',
+    'uses' => 'AustraliaPostController@index',
+]);
+
+Route::get('/postcode/api/search', [
+    'name' => 'Australia Post Postcode Search',
+    'as' => 'app.postcode.api.search',
+    'uses' => 'AustraliaPostController@search',
+]);
+
+/**
+ *      PayPal Routes
+ * ----------------------------------------------------------
+ */
+
 Route::get('/paypal/{order?}', [
     'name' => 'PayPal Express Checkout',
     'as' => 'order.paypal',
