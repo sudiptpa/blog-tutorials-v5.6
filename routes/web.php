@@ -125,3 +125,32 @@ Route::get('/checkout/payment/{order}/failed', [
     'as' => 'checkout.payment.failed',
     'uses' => 'PaymentController@failed',
 ]);
+
+/**
+ *      NAB UnionPay Tranasct Routes
+ * ----------------------------------------------------------
+ */
+
+Route::get('/checkout/payment/unionpay', [
+    'name' => 'UnionPay Checkout Payment',
+    'as' => 'checkout.payment.unionpay',
+    'uses' => 'UnionPayController@checkout',
+]);
+
+Route::post('/checkout/payment/{order}/unionpay/process', [
+    'name' => 'UnionPay Checkout Payment',
+    'as' => 'checkout.payment.unionpay.process',
+    'uses' => 'UnionPayController@payment',
+]);
+
+Route::get('/checkout/payment/{order}/unionpay/completed', [
+    'name' => 'UnionPay Payment Completed',
+    'as' => 'checkout.payment.unionpay.completed',
+    'uses' => 'UnionPayController@completed',
+]);
+
+Route::get('/checkout/payment/{order}/failed', [
+    'name' => 'UnionPay Payment Failed',
+    'as' => 'checkout.payment.unionpay.failed',
+    'uses' => 'UnionPayController@failed',
+]);

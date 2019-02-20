@@ -83,6 +83,7 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ route('checkout.payment.unionpay') }}">NAB UnionPay Integration</a>
                     <a href="{{ route('checkout.payment') }}">SecurePay Integration</a>
                     <a href="{{ route('order.paypal') }}">PayPal Integration</a>
                     <a href="{{ route('app.postcode.search') }}">Postcode Search</a>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc3c63de3ff9d18e7e676be366a273b0",
+    "content-hash": "b293e24ac676ddd6e5039fbdf60ad8a5",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1711,10 +1711,15 @@
         {
             "name": "omnipay/securepay",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/omnipay-securepay.git",
+                "reference": "f1dc0d1e41b41baccc42cb1202f650be8121878f"
+            },
             "dist": {
                 "type": "path",
-                "url": "/var/www/html/packages/omnipay-securepay",
-                "reference": "1d59c703591676eab94dcf96796792371cd1dcee",
+                "url": "https://api.github.com/repos/thephpleague/omnipay-securepay/zipball/f1dc0d1e41b41baccc42cb1202f650be8121878f",
+                "reference": "f1dc0d1e41b41baccc42cb1202f650be8121878f",
                 "shasum": null
             },
             "require": {
@@ -2779,6 +2784,56 @@
             "time": "2017-10-06T14:18:56+00:00"
         },
         {
+            "name": "sudiptpa/paypal-ipn",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sudiptpa/paypal-ipn.git",
+                "reference": "e502abffc00ffaf208249cc3b792666af64199a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sudiptpa/paypal-ipn/zipball/e502abffc00ffaf208249cc3b792666af64199a2",
+                "reference": "e502abffc00ffaf208249cc3b792666af64199a2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "6.*",
+                "php": "~5.5|~7.0",
+                "symfony/event-dispatcher": "~2.0|~3.0|~4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PayPal\\IPN\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sujip Thapa",
+                    "email": "sudiptpa@gmail.com"
+                }
+            ],
+            "description": "PayPal IPN listener driver for PHP",
+            "keywords": [
+                "ipn",
+                "paypal"
+            ],
+            "time": "2018-07-18T15:09:15+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.0.2",
             "source": {
@@ -3012,16 +3067,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.0.10",
+            "version": "v4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "63353a71073faf08f62caab4e6889b06a787f07b"
+                "reference": "2391ed210a239868e7256eb6921b1bd83f3087b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/63353a71073faf08f62caab4e6889b06a787f07b",
-                "reference": "63353a71073faf08f62caab4e6889b06a787f07b",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/2391ed210a239868e7256eb6921b1bd83f3087b5",
+                "reference": "2391ed210a239868e7256eb6921b1bd83f3087b5",
                 "shasum": ""
             },
             "require": {
@@ -3044,7 +3099,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -3071,7 +3126,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-06T07:35:43+00:00"
+            "time": "2018-04-06T07:35:57+00:00"
         },
         {
             "name": "symfony/finder",
@@ -5638,9 +5693,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "omnipay/securepay": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
