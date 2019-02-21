@@ -154,3 +154,5 @@ Route::get('/checkout/payment/{order}/failed', [
     'as' => 'checkout.payment.unionpay.failed',
     'uses' => 'UnionPayController@failed',
 ]);
+
+http://localhost/laravelv5.6/public/checkout/payment/34/unionpay/completed?settdate=20190221&expirydate=&callback_status_code=&restext=Approved&fingerprint=4474d78bd7fe08a67bb462873b110ab2b5d12001&merchant=XYZ0010&refid=ORDERNO34&pan=625094...014&summarycode=1&rescode=00&txnid=186001&timestamp=20190221051258

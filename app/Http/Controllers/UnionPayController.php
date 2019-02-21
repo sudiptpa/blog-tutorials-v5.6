@@ -38,7 +38,7 @@ class UnionPayController extends Controller
         try {
             $response = $gateway->purchase([
                 'amount' => $gateway->formatAmount($order->amount),
-                'transactionId' => sprintf('%s%s', 'ORDERNO', $order->id),
+                'transactionId' => str_pad($order->id, 8, '0', STR_PAD_LEFT),
                 'currency' => 'AUD',
                 'cancelUrl' => $gateway->getCancelUrl($order),
                 'returnUrl' => $gateway->getReturnUrl($order),
@@ -72,7 +72,7 @@ class UnionPayController extends Controller
 
         $response = $gateway->complete([
             'amount' => $gateway->formatAmount($order->amount),
-            'transactionId' => sprintf('%s%s', 'ORDERNO', $order->id),
+            'transactionId' => str_pad($order->id, 8, '0', STR_PAD_LEFT),
             'currency' => 'AUD',
             'cancelUrl' => $gateway->getCancelUrl($order),
             'returnUrl' => $gateway->getReturnUrl($order),
@@ -84,8 +84,8 @@ class UnionPayController extends Controller
                 'payment_status' => Order::PAYMENT_COMPLETED,
             ]);
 
-            return redirect()->route('checkout.payment.unionpay.completed')->with([
-                'message' => 'Payment Successful, Thank you for placing an order!',
+            return redirect()->route('checkout.payment.unionpay')->with([
+                'message' => 'Payment Successful, Thank you for your order!',
             ]);
         }
 
