@@ -33,7 +33,7 @@ class UnionPayController extends Controller
     {
         $order = Order::findOrFail($order_id);
 
-        $gateway = new UnionPay;
+        $gateway = with(new UnionPay);
 
         try {
             $response = $gateway->purchase([
@@ -68,7 +68,7 @@ class UnionPayController extends Controller
     {
         $order = Order::findOrFail($order_id);
 
-        $gateway = new UnionPay;
+        $gateway = with(new UnionPay);
 
         $response = $gateway->complete([
             'amount' => $gateway->formatAmount($order->amount),
@@ -103,5 +103,39 @@ class UnionPayController extends Controller
         $order = Order::findOrFail($order_id);
 
         return view('checkout.payment', compact('order'));
+    }
+
+    /**
+     * @param $order_id
+     */
+    public function refund($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+
+        $gateway = with(new UnionPay);
+
+        try {
+            $response = $gateway->refund([
+                'transactionReference' => $order->transaction_id,
+                'amount' => $order->amount,
+                'transactionId' => str_pad($order->id, 8, '0', STR_PAD_LEFT),
+            ]);
+        } catch (Exception $e) {
+            // error response
+        }
+
+        if ($response->isSuccessful()) {
+            // success
+        }
+
+        // failed
+
+        if ($response->isRedirect()) {
+            $response->redirect();
+        }
+
+        return redirect()->back()->with([
+            'message' => "We're unable to process your payment at the moment, please try again!",
+        ]);
     }
 }
