@@ -45,4 +45,7 @@ return [
         'password' => env('SECUREPAY_PASSWORD'),
         'sandbox' => env('SECUREPAY_SANDBOX', true)
     ],
+    'auspost' => [
+        'api_key' => env('AUSPOST_API_KEY')
+    ]
 ];

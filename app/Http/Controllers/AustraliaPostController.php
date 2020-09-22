@@ -34,19 +34,26 @@ class AustraliaPostController extends Controller
      */
     public function search()
     {
-        $parameters = [
-            'q' => $this->request->get('query'),
-        ];
+        $parameters['q'] = $this->request->get('query');
 
-        $response = with(new Auspost(config('auspost.auth_key')))
-            ->send($parameters);
+        $api_key = config('services.auspost.api_key');
 
-        $localities = collect($response['localities']['locality'] ?? []);
+        if (empty($api_key)) {
+            return [];
+        }
 
-        if ($localities->count()) {
-            $collection = is_array($localities->first()) ? $localities : [$localities];
+        $response = with(new Auspost($api_key))->locality($parameters);
 
-            return response()->json($collection);
+        if ($response && $response->isSuccessful()) {
+            $result = $response->toArray();
+
+            $localities = collect($result['localities']['locality'] ?? []);
+
+            if ($localities->count()) {
+                $collection = is_array($localities->first()) ? $localities : [$localities];
+
+                return response()->json($collection);
+            }
         }
 
         return [];
