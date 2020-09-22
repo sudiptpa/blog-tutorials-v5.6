@@ -4,6 +4,7 @@ namespace App\Auspost;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
+use Throwable;
 
 /**
  * Class Request
@@ -11,14 +12,17 @@ use GuzzleHttp\ClientInterface;
  */
 class Request
 {
-    const END_POINT = 'https://digitalapi.auspost.com.au/postcode/search.json';
+    /**
+     * @var string
+     */
+    protected $url_prefix = 'https://digitalapi.auspost.com.au';
 
     /**
-     * The API token.
+     * The API key.
      *
      * @var string
      */
-    protected $token;
+    protected $api_key;
 
     /**
      * The guzzle http client.
@@ -30,45 +34,56 @@ class Request
     /**
      * Create a new request instance.
      *
-     * @param string $token
+     * @param string $api_key
      */
-    public function __construct($token)
+    public function __construct($api_key)
     {
-        $this->token = $token;
+        $this->api_key = $api_key;
         $this->client = new Client();
     }
 
-    public function getEndpoint()
-    {
-        return self::END_POINT;
-    }
-
     /**
-     * Retrive data via API call from Auspost server.
+     * @param string $uri
+     * @param array  $parameters
+     * @param string $method
      *
-     * @param array $parameters
-     * @param $method
-     *
-     * @return App\Auspost\Response
+     * @return \App\Auspost\Response
      */
-    public function send(array $parameters = [], $method = 'get')
+    public function make($uri, array $parameters = [], $method = 'post')
     {
-        $url = $this->getEndpoint() . '?' . http_build_query($parameters);
-
-        $parameters = [
+        $params = [
             'headers' => [
                 'Content-Type' => 'application/json',
-                'Auth-Key' => $this->token,
+                'AUTH-KEY' => $this->api_key,
             ],
         ];
 
-        try {
-            $response = $this->client->request($method, $url, $parameters);
-
-        } catch (ClientException $exception) {
-            return $exception;
+        if (in_array(strtoupper($method), ['POST'])) {
+            $params['body'] = json_encode($parameters);
         }
 
-        return with(new Response($response))->toArray();
+        try {
+            $response = $this->client->{$method}($uri, $params);
+        } catch (Throwable $e) {
+            return [];
+        }
+
+        return new Response($response);
+    }
+
+    /**
+     * @param array $parameters
+     */
+    public function locality(array $parameters)
+    {
+        $uri = vsprintf('%s/postcode/search.json', [
+            $this->url_prefix,
+        ]);
+
+        if (sizeof($parameters)) {
+            $uri .= '?' . http_build_query($parameters);
+        }
+
+        return $this->make($uri, $parameters, 'get');
     }
 }

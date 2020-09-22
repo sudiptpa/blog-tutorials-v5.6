@@ -28,7 +28,7 @@ class Response extends GuzzleResponse
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function toJson()
     {
@@ -36,10 +36,24 @@ class Response extends GuzzleResponse
     }
 
     /**
-     * @return mixed
+     * @return array
      */
     public function toArray()
     {
         return json_decode($this->toJson(), true);
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSuccessful()
+    {
+        $response = $this->response;
+
+        if (is_object($response) && method_exists($response, 'getStatusCode')) {
+            $statusCode = $this->response->getStatusCode();
+
+            return $statusCode >= 200 && $statusCode < 300;
+        }
     }
 }
