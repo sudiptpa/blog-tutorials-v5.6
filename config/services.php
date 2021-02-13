@@ -43,7 +43,14 @@ return [
     'securepay' => [
         'merchant_id' => env('SECUREPAY_MERCHANTID'),
         'password' => env('SECUREPAY_PASSWORD'),
-        'sandbox' => env('SECUREPAY_SANDBOX', true)
+        'sandbox' => env('SECUREPAY_SANDBOX', true),
+    ],
+    'nab' => [
+        'unionpay' => [
+            'merchant_id' => env('UNIONPAY_MERCHANTID'),
+            'password' => env('UNIONPAY_PASSWORD'),
+            'sandbox' => env('UNIONPAY_SANDBOX', true),
+        ],
     ],
     'auspost' => [
         'api_key' => env('AUSPOST_API_KEY')

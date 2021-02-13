@@ -125,3 +125,34 @@ Route::get('/checkout/payment/{order}/failed', [
     'as' => 'checkout.payment.failed',
     'uses' => 'PaymentController@failed',
 ]);
+
+/**
+ *      NAB UnionPay Tranasct Routes
+ * ----------------------------------------------------------
+ */
+
+Route::get('/checkout/payment/unionpay', [
+    'name' => 'UnionPay Checkout Payment',
+    'as' => 'checkout.payment.unionpay',
+    'uses' => 'UnionPayController@checkout',
+]);
+
+Route::post('/checkout/payment/{order}/unionpay/process', [
+    'name' => 'UnionPay Checkout Payment',
+    'as' => 'checkout.payment.unionpay.process',
+    'uses' => 'UnionPayController@payment',
+]);
+
+Route::get('/checkout/payment/{order}/unionpay/completed', [
+    'name' => 'UnionPay Payment Completed',
+    'as' => 'checkout.payment.unionpay.completed',
+    'uses' => 'UnionPayController@completed',
+]);
+
+Route::get('/checkout/payment/{order}/failed', [
+    'name' => 'UnionPay Payment Failed',
+    'as' => 'checkout.payment.unionpay.failed',
+    'uses' => 'UnionPayController@failed',
+]);
+
+http://localhost/laravelv5.6/public/checkout/payment/34/unionpay/completed?settdate=20190221&expirydate=&callback_status_code=&restext=Approved&fingerprint=4474d78bd7fe08a67bb462873b110ab2b5d12001&merchant=XYZ0010&refid=ORDERNO34&pan=625094...014&summarycode=1&rescode=00&txnid=186001&timestamp=20190221051258

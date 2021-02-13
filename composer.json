@@ -12,12 +12,14 @@
         "laravel/tinker": "~1.0",
         "league/omnipay": "^3.0",
         "omnipay/paypal": "^3.0",
+        "omnipay/securepay": "^3.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
         "spatie/laravel-analytics": "^3.4",
         "sudiptpa/guid": "^1.0",
-        "vinkla/instagram": "^8.0",
-        "omnipay/securepay" : "^3.0"
+        "sudiptpa/omnipay-nabtransact": "^3.0",
+        "sudiptpa/paypal-ipn": "^2.0",
+        "vinkla/instagram": "^8.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
